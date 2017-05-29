@@ -44,6 +44,8 @@
     <Compile Include="ThinkNode_Conditional_DoWork.cs" />
     <Compile Include="BaseRobot_Helper.cs" />
     <Compile Include="ArcBaseRobot.cs" />
+    <Compile Include="MainTabWindow_Robots.cs" />
+    <Compile Include="RobotPawnTableDefOf.cs" />
     <Compile Include="Building_BaseRobotCreator.cs" />
   </ItemGroup>
   <ItemGroup>
