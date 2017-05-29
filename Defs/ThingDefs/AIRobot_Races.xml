@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ThingDefs>
+
+	<ThingDef Class="BaseRobot.ThingDef_BaseRobot" Name="Base_X2_AIRobot" Abstract="True">
+		<thingClass>BaseRobot.ArcBaseRobot</thingClass>
+		<category>Pawn</category>
+		<selectable>true</selectable>
+		<tickerType>Normal</tickerType>
+		<altitudeLayer>Pawn</altitudeLayer>
+		<useHitPoints>false</useHitPoints>
+		<hasTooltip>true</hasTooltip>
+		<soundImpactDefault>BulletImpactMetal</soundImpactDefault>
+		<statBases>
+			<Flammability>1.0</Flammability>
+			<LeatherAmount>0</LeatherAmount>
+			<PsychicSensitivity>0</PsychicSensitivity>
+			<ToxicSensitivity>0</ToxicSensitivity>
+			<Mass>15</Mass>
+		</statBases>
+		<inspectorTabs>
+			<li>ITab_Pawn_Health</li>
+			<li>ITab_Pawn_Needs</li>
+			<li>ITab_Pawn_Gear</li>
+			<!--
+			<li>ITab_Pawn_Character</li>
+			<li>ITab_Pawn_Training</li>
+			<li>ITab_Pawn_Guest</li>
+			<li>ITab_Pawn_Prisoner</li>
+			<li>ITab_Pawn_Social</li>
+			-->
+		</inspectorTabs>
+		<comps>
+			<li>
+				<compClass>CompAttachBase</compClass>
+			</li>
+		</comps>
+		<drawGUIOverlay>true</drawGUIOverlay>
+		<race>
+			<thinkTreeMain>X2_AIRobot</thinkTreeMain>
+			<thinkTreeConstant>X2_AIRobotConstant</thinkTreeConstant>
+			<fleshType>Mechanoid</fleshType>
+			<!-- <foodType>OmnivoreRoughAnimal</foodType> -->
+			<foodType>None</foodType>
+			<intelligence>Animal</intelligence>
+			<makesFootprints>false</makesFootprints>
+			<nameCategory>HumanStandard</nameCategory>
+			<wildness>0.1</wildness>
+			<mateMtbHours>0</mateMtbHours>
+			<ageGenerationCurve>
+				<points>
+					<li>(0,100)</li>
+					<li>(1,50)</li>
+					<li>(5,50)</li>
+					<li>(20,0)</li>
+				</points>
+			</ageGenerationCurve>
+			<lifeExpectancy>5</lifeExpectancy>
+			<lifeStageAges>
+				<li>
+					<def>MechanoidFullyFormed</def>
+					<minAge>0</minAge>
+				</li>
+			</lifeStageAges>
+			<soundMeleeHitPawn>Pawn_Melee_MechanoidBash_HitPawn</soundMeleeHitPawn>
+			<soundMeleeHitBuilding>Pawn_Melee_MechanoidBash_HitBuilding</soundMeleeHitBuilding>
+			<soundMeleeMiss>Pawn_Melee_MechanoidBash_Miss</soundMeleeMiss>
+		</race>
+	</ThingDef>
+
+</ThingDefs>

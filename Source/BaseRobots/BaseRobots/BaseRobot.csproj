@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProjectGuid>{3B7335CD-6939-4B36-B15D-3C3C50C2F89D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>BaseRobot</RootNamespace>
+    <AssemblyName>BaseRobot</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <UseMSBuildEngine>False</UseMSBuildEngine>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Compile Include="MinifiedThing_BaseRobot.cs" />
+    <Compile Include="MoteThrowHelper.cs" />
+    <Compile Include="BaseRobot_disabled.cs" />
+    <Compile Include="Building_BaseRobotRechargeStation.cs" />
+    <Compile Include="JobDriver_GoRecharging.cs" />
+    <Compile Include="JobGiver_LeaveLord.cs" />
+    <Compile Include="JobGiver_RechargeEnergy.cs" />
+    <Compile Include="JobGiver_Work.cs" />
+    <Compile Include="ThingDef_BaseRobot.cs" />
+    <Compile Include="ThingDef_BaseRobot_Building_RechargeStation.cs" />
+    <Compile Include="ThinkNode_Conditional_DoWork.cs" />
+    <Compile Include="BaseRobot_Helper.cs" />
+    <Compile Include="ArcBaseRobot.cs" />
+    <Compile Include="Building_BaseRobotCreator.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>..\..\..\..\..\..\.local\share\Steam\steamapps\common\RimWorld\RimWorldLinux_Data\Managed\Assembly-CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>..\..\..\..\..\..\.local\share\Steam\steamapps\common\RimWorld\RimWorldLinux_Data\Managed\UnityEngine.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+</Project>

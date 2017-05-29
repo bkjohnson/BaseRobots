@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ThinkTrees>
+
+
+  <!--============= AI Duty ============-->
+  <ThinkTreeDef>
+    <defName>AIRobot_LordDuty</defName>
+    <thinkRoot Class="ThinkNode_Tagger">
+      <tagToGive>UnspecifiedLordDuty</tagToGive>
+      <subNodes>
+        <li Class="ThinkNode_ConditionalHasLord">
+          <subNodes>
+            <li Class="BaseRobot.JobGiver_LeaveLord" />
+          </subNodes>
+        </li>
+      </subNodes>
+    </thinkRoot>
+  </ThinkTreeDef>
+
+
+  <ThinkTreeDef>
+    <defName>AIRobot_LordDutyConstant</defName>
+    <thinkRoot Class="ThinkNode_Tagger">
+      <tagToGive>UnspecifiedLordDuty</tagToGive>
+      <subNodes>
+        <li Class="ThinkNode_ConditionalHasLord">
+          <subNodes>
+            <li Class="BaseRobot.JobGiver_LeaveLord" />
+          </subNodes>
+        </li>
+      </subNodes>
+    </thinkRoot>
+  </ThinkTreeDef>
+
+
+</ThinkTrees>

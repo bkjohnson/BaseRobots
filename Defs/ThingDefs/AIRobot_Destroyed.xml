@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ThingDefs>
+
+	<!-- =========== Bases =========== -->
+	<ThingDef Name="DisabledBase" Abstract="True">
+		<thingClass>BaseRobot.BaseRobot_disabled</thingClass>
+		<techLevel>Industrial</techLevel>
+		<category>Item</category>
+		<altitudeLayer>Item</altitudeLayer>
+		<passability>PassThroughOnly</passability>
+		<tradeability>Sellable</tradeability>
+		<smeltable>true</smeltable>
+		<fillPercent>0.4</fillPercent>
+		<statBases>
+			<MaxHitPoints>50</MaxHitPoints>
+			<MarketValue>25</MarketValue>
+			<Flammability>1</Flammability>
+			<Beauty>-10</Beauty>
+			<DeteriorationRate>0.5</DeteriorationRate>
+			<SellPriceFactor>0.30</SellPriceFactor>
+		</statBases>
+		<selectable>true</selectable>
+		<pathCost>55</pathCost>
+		<pathCostIgnoreRepeat>true</pathCostIgnoreRepeat>
+		<randomizeRotationOnSpawn>true</randomizeRotationOnSpawn>
+		<tradeNeverStack>true</tradeNeverStack>
+		<stackLimit>1</stackLimit>
+		<useHitPoints>true</useHitPoints>
+		<scatterableOnMapGen>false</scatterableOnMapGen>
+		<alwaysHaulable>true</alwaysHaulable>
+		<comps>
+			<li Class="CompProperties_Forbiddable"/>
+		</comps>
+		<thingCategories>
+			<li>Robots</li>
+		</thingCategories>
+	</ThingDef>
+
+</ThingDefs>
