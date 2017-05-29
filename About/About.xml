@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ModMetaData>
+	<name>Base Robots</name>
+	<author>Arcane_Chill</author>
+	<url></url>
+	<targetVersion>0.17.0</targetVersion>
+	<description>This is meant to be used by other modders who want to create their own custom robots.
+
+Special thanks to Haplo_X1 - I relied heavily on his mod Misc. Robots
+
+	</description>
+</ModMetaData>
