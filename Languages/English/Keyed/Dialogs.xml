@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+
+  <!-- Pawn naming -->
+  <RobotGainsName>The robot is now called {0}.</RobotGainsName>
+
+</LanguageData>

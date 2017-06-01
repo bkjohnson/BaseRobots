@@ -6,6 +6,8 @@
     <columns>
       <li>Label</li>
       <li>GapTiny</li>
+      <li>RobotRename</li>
+      <li>GapTiny</li>
       <li>AllowedAreaWide</li>
       <li>RemainingSpace</li>
     </columns>

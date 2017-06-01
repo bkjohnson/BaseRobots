@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <PawnColumnDef>
+    <defName>RobotRename</defName>
+    <workerClass>BaseRobot.PawnColumnWorker_Rename</workerClass>
+    <sortable>true</sortable>
+  </PawnColumnDef>
+
+</Defs>
