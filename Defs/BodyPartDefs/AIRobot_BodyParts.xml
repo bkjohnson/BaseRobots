@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <BodyPartDefs>
 
-	<!-- AIRobot  -->
+	<!-- BaseRobot  -->
 
 	<BodyPartDef>
-		<defName>AIRobot_Thorax</defName>
+		<defName>BaseRobot_Thorax</defName>
 		<label>Thorax</label>
 		<hitPoints>40</hitPoints>
 		<oldInjuryBaseChance>0</oldInjuryBaseChance>
@@ -14,7 +14,7 @@
 	</BodyPartDef>
 
 	<BodyPartDef>
-		<defName>AIRobot_ArtificialBrain</defName>
+		<defName>BaseRobot_ArtificialBrain</defName>
 		<label>Central Processing Unit</label>
 		<hitPoints>10</hitPoints>
 		<oldInjuryBaseChance>0</oldInjuryBaseChance>
@@ -34,7 +34,7 @@
 	</BodyPartDef>
 
 	<BodyPartDef>
-		<defName>AIRobot_UnneededData</defName>
+		<defName>BaseRobot_UnneededData</defName>
 		<label>Central Memory Unit</label>
 		<hitPoints>3</hitPoints>
 		<oldInjuryBaseChance>0</oldInjuryBaseChance>
@@ -48,7 +48,7 @@
 	</BodyPartDef>
 
 	<BodyPartDef>
-		<defName>AIRobot_CommUnit</defName>
+		<defName>BaseRobot_CommUnit</defName>
 		<label>Communication Unit</label>
 		<hitPoints>3</hitPoints>
 		<oldInjuryBaseChance>0</oldInjuryBaseChance>
@@ -62,7 +62,7 @@
 	</BodyPartDef>
 
 	<BodyPartDef>
-		<defName>AIRobot_BatteryLeft</defName>
+		<defName>BaseRobot_BatteryLeft</defName>
 		<label>Left battery</label>
 		<hitPoints>20</hitPoints>
 		<oldInjuryBaseChance>0</oldInjuryBaseChance>
@@ -77,7 +77,7 @@
 	</BodyPartDef>
 
 	<BodyPartDef>
-		<defName>AIRobot_BatteryRight</defName>
+		<defName>BaseRobot_BatteryRight</defName>
 		<label>Right battery</label>
 		<hitPoints>20</hitPoints>
 		<oldInjuryBaseChance>0</oldInjuryBaseChance>
@@ -92,7 +92,7 @@
 	</BodyPartDef>
 
 	<BodyPartDef>
-		<defName>AIRobot_MaterialAnalyzer</defName>
+		<defName>BaseRobot_MaterialAnalyzer</defName>
 		<label>Material analyzer</label>
 		<hitPoints>10</hitPoints>
 		<oldInjuryBaseChance>0</oldInjuryBaseChance>
@@ -105,7 +105,7 @@
 	</BodyPartDef>
 
 	<BodyPartDef>
-		<defName>AIRobot_Spine</defName>
+		<defName>BaseRobot_Spine</defName>
 		<label>Spine</label>
 		<hitPoints>35</hitPoints>
 		<oldInjuryBaseChance>0</oldInjuryBaseChance>

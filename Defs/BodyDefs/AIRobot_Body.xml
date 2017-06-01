@@ -2,10 +2,10 @@
 <BodyDefs>
 
 	<BodyDef>
-		<defName>AIRobot</defName>
+		<defName>BaseRobot</defName>
 		<label>robot</label>
 		<corePart>
-			<def>AIRobot_Thorax</def>
+			<def>BaseRobot_Thorax</def>
 			<height>Middle</height>
 			<depth>Outside</depth>
 			<groups>
@@ -29,7 +29,7 @@
 							</groups>
 							<parts>
 								<li>
-									<def>AIRobot_ArtificialBrain</def>
+									<def>BaseRobot_ArtificialBrain</def>
 									<coverage>0.25</coverage>
 									<depth>Inside</depth>
 									<groups>
@@ -38,7 +38,7 @@
 									</groups>
 								</li>
 								<li>
-									<def>AIRobot_UnneededData</def>
+									<def>BaseRobot_UnneededData</def>
 									<coverage>0.01</coverage>
 									<depth>Inside</depth>
 									<groups>
@@ -86,7 +86,7 @@
 									</groups>
 								</li>
 								<li>
-									<def>AIRobot_CommUnit</def>
+									<def>BaseRobot_CommUnit</def>
 									<coverage>0.1</coverage>
 									<depth>Inside</depth>
 									<groups>
@@ -201,7 +201,7 @@
 					</parts>
 				</li>
 				<li>
-					<def>AIRobot_Spine</def>
+					<def>BaseRobot_Spine</def>
 					<coverage>0.02</coverage>
 					<depth>Inside</depth>
 					<groups>
@@ -209,7 +209,7 @@
 					</groups>
 				</li>
 				<li>
-					<def>AIRobot_BatteryLeft</def>
+					<def>BaseRobot_BatteryLeft</def>
 					<coverage>0.2</coverage>
 					<depth>Inside</depth>
 					<groups>
@@ -217,7 +217,7 @@
 					</groups>
 				</li>
 				<li>
-					<def>AIRobot_BatteryRight</def>
+					<def>BaseRobot_BatteryRight</def>
 					<coverage>0.2</coverage>
 					<depth>Inside</depth>
 					<groups>
@@ -225,7 +225,7 @@
 					</groups>
 				</li>
 				<li>
-					<def>AIRobot_MaterialAnalyzer</def>
+					<def>BaseRobot_MaterialAnalyzer</def>
 					<coverage>0.1</coverage>
 					<depth>Inside</depth>
 					<groups>
