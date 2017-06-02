@@ -15,8 +15,9 @@ namespace BaseRobot
 			Toil toil = new Toil ();
 			toil.initAction = delegate {
 				ArcBaseRobot bot = toil.actor as ArcBaseRobot;
-				bool flag = bot != null && bot.rechargeStation != null;
-				if (flag) {
+				if (bot != null && 
+					bot.rechargeStation != null) {
+
 					bot.rechargeStation.AddRobotToContainer (bot);
 				}
 			};

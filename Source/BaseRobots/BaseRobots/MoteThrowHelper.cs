@@ -6,6 +6,10 @@ namespace BaseRobot
 {
 	public static class MoteThrowHelper
 	{
+
+		private const float THIRTY_FIVE = 0.35f;
+		private const float FIFTY_FIVE = 0.55f;
+		private const float POINT_TEN = 0.1f;
 		//
 		// Static Methods
 		//
@@ -21,21 +25,21 @@ namespace BaseRobot
 
 		public static Mote ThrowBatteryXYZ (ThingDef moteDef, Vector3 loc, Map map, float scale)
 		{
-			bool flag = !GenView.ShouldSpawnMotesAt (loc, map) || map.moteCounter.Saturated;
 			Mote result;
-			if (flag) {
+			if (!GenView.ShouldSpawnMotesAt (loc, map) || 
+				map.moteCounter.Saturated) {
 				result = null;
 			}
 			else {
-				MoteThrown moteThrown = (MoteThrown)ThingMaker.MakeThing (moteDef, null);
-				moteThrown.Scale = scale;
-				moteThrown.rotationRate = (float)Rand.Range (-1, 1);
-				moteThrown.exactPosition = loc;
-				moteThrown.exactPosition += new Vector3 (0.35f, 0, 0.35f);
-				moteThrown.exactPosition += new Vector3 (Rand.Value, 0, Rand.Value) * 0.1f;
-				moteThrown.SetVelocity (Rand.Range (30, 60), Rand.Range (0.35f, 0.55f));
-				GenSpawn.Spawn (moteThrown, IntVec3Utility.ToIntVec3 (loc), map);
-				result = moteThrown;
+				MoteThrown batteryMote = (MoteThrown)ThingMaker.MakeThing (moteDef, null);
+				batteryMote.Scale = scale;
+				batteryMote.rotationRate = (float)Rand.Range (-1, 1);
+				batteryMote.exactPosition = loc;
+				batteryMote.exactPosition += new Vector3 (THIRTY_FIVE, 0, THIRTY_FIVE);
+				batteryMote.exactPosition += new Vector3 (Rand.Value, 0, Rand.Value) * POINT_TEN;
+				batteryMote.SetVelocity (Rand.Range (30, 60), Rand.Range (THIRTY_FIVE, FIFTY_FIVE));
+				GenSpawn.Spawn (batteryMote, IntVec3Utility.ToIntVec3 (loc), map);
+				result = batteryMote;
 			}
 			return result;
 		}

@@ -14,24 +14,21 @@ namespace BaseRobot
 		public override float GetPriority (Pawn pawn)
 		{
 			TimeAssignmentDef timeAssignmentDef = (pawn.timetable != null) ? pawn.timetable.CurrentAssignment : TimeAssignmentDefOf.Anything;
-			bool flag = timeAssignmentDef == TimeAssignmentDefOf.Anything;
+
 			float result;
-			if (flag) {
+			if (timeAssignmentDef == TimeAssignmentDefOf.Anything) {
 				result = 5.5f;
 			}
 			else {
-				bool flag2 = timeAssignmentDef == TimeAssignmentDefOf.Work;
-				if (flag2) {
+				if (timeAssignmentDef == TimeAssignmentDefOf.Work) {
 					result = 9;
 				}
 				else {
-					bool flag3 = timeAssignmentDef == TimeAssignmentDefOf.Sleep;
-					if (flag3) {
+					if (timeAssignmentDef == TimeAssignmentDefOf.Sleep) {
 						result = 2;
 					}
 					else {
-						bool flag4 = timeAssignmentDef == TimeAssignmentDefOf.Joy;
-						if (!flag4) {
+						if (timeAssignmentDef != TimeAssignmentDefOf.Joy) {
 							throw new NotImplementedException ();
 						}
 						result = 2;
@@ -43,31 +40,29 @@ namespace BaseRobot
 
 		private Job GiverTryGiveJobPrioritized (Pawn pawn, WorkGiver giver, IntVec3 cell)
 		{
-			bool flag = !this.PawnCanUseWorkGiver (pawn, giver);
 			Job result;
-			if (flag) {
+			if (!this.PawnCanUseWorkGiver (pawn, giver)) {
 				result = null;
 			}
 			else {
 				try {
 					Job job = giver.NonScanJob (pawn);
-					bool flag2 = job != null;
-					if (flag2) {
+					if (job != null) {
 						Job job2 = job;
 						result = job2;
 						return result;
 					}
 					WorkGiver_Scanner scanner = giver as WorkGiver_Scanner;
-					bool flag3 = scanner != null;
-					if (flag3) {
-						bool scanThings = giver.def.scanThings;
-						if (scanThings) {
+
+					if (scanner != null) {
+
+						if (giver.def.scanThings) {
 							Predicate<Thing> predicate = (Thing t) => !ForbidUtility.IsForbidden (t, pawn) && scanner.HasJobOnThing (pawn, t, false);
 							List<Thing> thingList = GridsUtility.GetThingList (cell, pawn.Map);
 							for (int i = 0; i < thingList.Count; i++) {
 								Thing thing = thingList [i];
-								bool flag4 = scanner.PotentialWorkThingRequest.Accepts (thing) && predicate (thing);
-								if (flag4) {
+
+								if (scanner.PotentialWorkThingRequest.Accepts (thing) && predicate (thing)) {
 									pawn.mindState.lastGivenWorkType = giver.def.workType;
 									Job job3 = scanner.JobOnThing (pawn, thing, false);
 									result = job3;
@@ -75,8 +70,10 @@ namespace BaseRobot
 								}
 							}
 						}
-						bool flag5 = giver.def.scanCells && !ForbidUtility.IsForbidden (cell, pawn) && scanner.HasJobOnCell (pawn, cell);
-						if (flag5) {
+						if (giver.def.scanCells && 
+							!ForbidUtility.IsForbidden (cell, pawn) && 
+							scanner.HasJobOnCell (pawn, cell)) {
+
 							pawn.mindState.lastGivenWorkType = giver.def.workType;
 							Job job4 = scanner.JobOnCell (pawn, cell);
 							result = job4;
@@ -106,9 +103,9 @@ namespace BaseRobot
 		protected override Job TryGiveJob (Pawn pawn)
 		{
 			ArcBaseRobot bot = pawn as ArcBaseRobot;
-			bool flag = bot == null;
+
 			Job result;
-			if (flag) {
+			if (bot == null) {
 				result = null;
 			}
 			else {
@@ -118,32 +115,29 @@ namespace BaseRobot
 				WorkGiver_Scanner workGiver_Scanner = null;
 				for (int i = 0; i < workGivers.Count; i++) {
 					WorkGiver workGiver = workGivers [i];
-					bool flag2 = workGiver.def.priorityInType != num && targetInfo.IsValid;
-					if (flag2) {
+					if (workGiver.def.priorityInType != num && 
+						targetInfo.IsValid) {
 						break;
 					}
-					bool flag3 = this.PawnCanUseWorkGiver (pawn, workGiver);
-					if (flag3) {
+					if (this.PawnCanUseWorkGiver (pawn, workGiver)) {
 						try {
 							Job job = workGiver.NonScanJob (pawn);
-							bool flag4 = job != null;
-							if (flag4) {
+							if (job != null) {
 								result = job;
 								return result;
 							}
 							WorkGiver_Scanner scanner = workGiver as WorkGiver_Scanner;
-							bool flag5 = scanner != null;
-							if (flag5) {
-								bool scanThings = workGiver.def.scanThings;
-								if (scanThings) {
+
+							if (scanner != null) {
+								if (workGiver.def.scanThings) {
 									Predicate<Thing> predicate = (Thing t) => !ForbidUtility.IsForbidden (t, pawn) && scanner.HasJobOnThing (pawn, t, false);
 									IEnumerable<Thing> enumerable = scanner.PotentialWorkThingsGlobal (pawn);
-									bool prioritized = scanner.Prioritized;
+
 									Thing thing;
-									if (prioritized) {
+									if (scanner.Prioritized) {
 										IEnumerable<Thing> enumerable2 = enumerable;
-										bool flag6 = enumerable2 == null;
-										if (flag6) {
+
+										if (enumerable2 == null) {
 											enumerable2 = pawn.Map.listerThings.ThingsMatching (scanner.PotentialWorkThingRequest);
 										}
 										Predicate<Thing> predicate2 = predicate;
@@ -154,14 +148,13 @@ namespace BaseRobot
 										bool flag7 = enumerable != null;
 										thing = GenClosest.ClosestThingReachable (pawn.Position, pawn.Map, scanner.PotentialWorkThingRequest, scanner.PathEndMode, TraverseParms.For (pawn, Danger.Deadly, 0, false), 9999, predicate3, enumerable, 0, scanner.LocalRegionsToScanFirst, flag7, RegionType.Set_Passable, false);
 									}
-									bool flag8 = thing != null;
-									if (flag8) {
+									if (thing != null) {
 										targetInfo = thing;
 										workGiver_Scanner = scanner;
 									}
 								}
-								bool scanCells = workGiver.def.scanCells;
-								if (scanCells) {
+
+								if (workGiver.def.scanCells) {
 									IntVec3 position = pawn.Position;
 									float num2 = 99999;
 									float num3 = float.MinValue;
@@ -169,26 +162,26 @@ namespace BaseRobot
 									foreach (IntVec3 current in scanner.PotentialWorkCellsGlobal (pawn)) {
 										bool flag9 = false;
 										float num4 = (float)(current - position).LengthHorizontalSquared;
-										bool flag10 = prioritized2;
-										if (flag10) {
-											bool flag11 = !ForbidUtility.IsForbidden (current, pawn) && scanner.HasJobOnCell (pawn, current);
-											if (flag11) {
+										if (prioritized2) {
+											if (!ForbidUtility.IsForbidden (current, pawn) && 
+												scanner.HasJobOnCell (pawn, current)) {
+
 												float priority = scanner.GetPriority (pawn, current);
-												bool flag12 = priority > num3 || (priority == num3 && num4 < num2);
-												if (flag12) {
+												if (priority > num3 || 
+													(priority == num3 && num4 < num2)) {
 													flag9 = true;
 													num3 = priority;
 												}
 											}
 										}
 										else {
-											bool flag13 = num4 < num2 && !ForbidUtility.IsForbidden (current, pawn) && scanner.HasJobOnCell (pawn, current);
-											if (flag13) {
+											if (num4 < num2 && 
+												!ForbidUtility.IsForbidden (current, pawn) && 
+												scanner.HasJobOnCell (pawn, current)) {
 												flag9 = true;
 											}
 										}
-										bool flag14 = flag9;
-										if (flag14) {
+										if (flag9) {
 											targetInfo = new TargetInfo (current, pawn.Map, false);
 											workGiver_Scanner = scanner;
 											num2 = num4;
@@ -206,21 +199,12 @@ namespace BaseRobot
 								ex.ToString ()
 							}));
 						}
-						finally {
-						}
-						bool isValid = targetInfo.IsValid;
-						if (isValid) {
+
+						if (targetInfo.IsValid) {
 							pawn.mindState.lastGivenWorkType = workGiver.def.workType;
-							bool hasThing = targetInfo.HasThing;
-							Job job2;
-							if (hasThing) {
-								job2 = workGiver_Scanner.JobOnThing (pawn, targetInfo.Thing, false);
-							}
-							else {
-								job2 = workGiver_Scanner.JobOnCell (pawn, targetInfo.Cell);
-							}
-							bool flag15 = job2 != null;
-							if (flag15) {
+							Job job2 = workGiver_Scanner.JobOnThing (pawn, targetInfo.Thing, false);
+
+							if (job2 != null) {
 								result = job2;
 								return result;
 							}

@@ -12,22 +12,13 @@ namespace BaseRobot
 		//
 		public override float GetPriority (Pawn pawn)
 		{
-			bool flag = LordUtility.GetLord (pawn) != null;
-			float result;
-			if (flag) {
-				result = 9;
-			}
-			else {
-				result = 0;
-			}
-			return result;
+			return (LordUtility.GetLord (pawn) != null) ? 9 : 0;
 		}
 
 		protected override Job TryGiveJob (Pawn pawn)
 		{
 			Lord lord = LordUtility.GetLord (pawn);
-			bool flag = lord != null;
-			if (flag) {
+			if (lord != null) {
 				lord.Notify_PawnLost (pawn, PawnLostCondition.LeftVoluntarily);
 			}
 			return null;
