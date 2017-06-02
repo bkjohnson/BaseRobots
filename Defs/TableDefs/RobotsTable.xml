@@ -8,7 +8,7 @@
       <li>GapTiny</li>
       <li>RobotRename</li>
       <li>GapTiny</li>
-      <li>AllowedAreaWide</li>
+      <li>RobotArea</li>
       <li>RemainingSpace</li>
     </columns>
   </PawnTableDef>

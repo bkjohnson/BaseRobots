@@ -49,6 +49,7 @@
     <Compile Include="Building_BaseRobotCreator.cs" />
     <Compile Include="PawnColumnWorker_Rename.cs" />
     <Compile Include="Dialog_ChangeLabel.cs" />
+    <Compile Include="PawnColumnWorker_RobotArea.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Assembly-CSharp">

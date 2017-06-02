@@ -7,4 +7,9 @@
     <sortable>true</sortable>
   </PawnColumnDef>
 
+  <PawnColumnDef>
+    <defName>RobotArea</defName>
+    <workerClass>BaseRobot.PawnColumnWorker_RobotArea</workerClass>
+    <sortable>true</sortable>
+  </PawnColumnDef>
 </Defs>
