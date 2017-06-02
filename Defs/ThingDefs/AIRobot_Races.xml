@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ThingDefs>
 
-	<ThingDef Class="BaseRobot.ThingDef_BaseRobot" Name="Base_X2_AIRobot" Abstract="True">
+	<ThingDef Class="BaseRobot.ThingDef_BaseRobot" Name="Thing_BaseRobot" Abstract="True">
 		<thingClass>BaseRobot.ArcBaseRobot</thingClass>
 		<category>Pawn</category>
 		<selectable>true</selectable>

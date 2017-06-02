@@ -14,7 +14,7 @@
 		<filthLeaving>BuildingRubble</filthLeaving>
 	</ThingDef>
 
-	<ThingDef Class="BaseRobot.ThingDef_BaseRobot_Building_RechargeStation" ParentName="Base_X2_Building_RechargeStation" Name="Base_X2_AIRobotRechargeStation" Abstract="True">
+	<ThingDef Class="BaseRobot.ThingDef_BaseRobot_Building_RechargeStation" ParentName="Base_X2_Building_RechargeStation" Name="Thing_BaseRechargeStation" Abstract="True">
 		<ThingClass>BaseRobot.Building_BaseRobotRechargeStation</ThingClass>
 		<AltitudeLayer>Building</AltitudeLayer>
 		<passability>Standable</passability>
