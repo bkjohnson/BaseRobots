@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <NeedDef>
+    <DefName>Battery</DefName>
+    <needClass>BaseRobot.Need_Battery</needClass>
+    <label>battery</label>
+    <description>Battery is how much charge a robot has left.</description>
+    <listPriority>700</listPriority>
+    <major>true</major>
+    <showForCaravanMembers>true</showForCaravanMembers>
+  </NeedDef>
+
+</Defs>

@@ -225,10 +225,10 @@ namespace BaseRobot
 			base.Tick ();
 
 			// Not sure why this is here - robots don't need food
-			if (this.needs.food != null && 
+			/*if (this.needs.food != null && 
 				this.needs.food.CurLevel < 1) {
 				this.needs.food.CurLevel = 1;
-			}
+			}/**/
 
 			// Gain experience if learning is allowed
 			if (this.def2 == null || 
@@ -241,7 +241,7 @@ namespace BaseRobot
 				}
 			}
 			if (base.Spawned && 
-				(base.Dead || base.Downed || this.needs.rest.CurLevel <= 0.02)) {
+				(base.Dead || base.Downed)) {
 				this.Destroy ();
 			}
 			else {

@@ -516,26 +516,24 @@ namespace BaseRobot
 		{
 			base.Tick ();
 			this.UpdateGraphic ();
-			bool flag = this.robot == null && this.IsRobotInContainer ();
-			if (flag) {
+
+			if (this.robot == null && this.IsRobotInContainer ()) {
 				ArcBaseRobot bot = this.container [0];
-				bool flag2 = bot == null;
-				if (flag2) {
+				if (bot == null) {
 					this.container.Remove (this.container [0]);
 				}
 				else {
-					bool flag3 = this.SpawnRobotAfterRecharge && bot.needs.rest.CurLevel >= 0.99;
-					if (flag3) {
+					Need_Battery battery = bot.needs.TryGetNeed<Need_Battery> ();
+
+					if (this.SpawnRobotAfterRecharge && battery.CurLevel >= 0.99) {
 						this.Button_SpawnBot ();
 					}
 					else {
-						bool flag4 = bot.needs.rest.CurLevel < 1;
-						if (flag4) {
-							Need_Rest expr_B8 = bot.needs.rest;
-							expr_B8.CurLevel = expr_B8.CurLevel + 4E-05f * this.rechargeEfficiency;
-							bool flag5 = bot.needs.rest.CurLevel > 1;
-							if (flag5) {
-								bot.needs.rest.CurLevel = 1;
+						if (battery.CurLevel < 1) {
+							//Need_Rest expr_B8 = bot.needs.rest;
+							battery.CurLevel = battery.CurLevel + 4E-05f * this.rechargeEfficiency;
+							if (battery.CurLevel > 1) {
+								battery.CurLevel = 1;
 							}
 							this.TryThrowBatteryMote (bot);
 						}
@@ -543,14 +541,10 @@ namespace BaseRobot
 				}
 			}
 			else {
-				bool flag6 = this.robotIsDestroyed;
-				if (!flag6) {
-					bool flag7 = this.robot == null && (!this.robotSpawnedOnce || !this.IsRobotInContainer ());
-					if (!flag7) {
-						bool flag8 = this.robotSpawnedOnce && !this.IsRobotInContainer () && (this.robot == null || this.robot.Destroyed || this.robot.Dead);
-						if (flag8) {
-							bool flag9 = (this.robot.Destroyed || this.robot.Dead) && this.robot.Corpse != null;
-							if (flag9) {
+				if (!this.robotIsDestroyed) {
+					if (!(this.robot == null && (!this.robotSpawnedOnce || !this.IsRobotInContainer ()))) {
+						if (this.robotSpawnedOnce && !this.IsRobotInContainer () && (this.robot == null || this.robot.Destroyed || this.robot.Dead)) {
+							if ((this.robot.Destroyed || this.robot.Dead) && this.robot.Corpse != null) {
 								this.robot.Corpse.Destroy (0);
 							}
 							this.robotIsDestroyed = true;
@@ -560,8 +554,8 @@ namespace BaseRobot
 							bool flag10 = this.checkDistanceAndEnergyTicks > 0;
 							if (!flag10) {
 								this.checkDistanceAndEnergyTicks = 192;
-								bool flag11 = this.robot.needs.rest.CurLevel < 0.4 && !this.robot.Drafted && !BaseRobot_Helper.IsInDistance (base.Position, this.robot.Position, 50);
-								if (flag11) {
+								Need_Battery battery = this.robot.needs.TryGetNeed<Need_Battery> ();
+								if (battery.CurLevel < 0.4 && !this.robot.Drafted && !BaseRobot_Helper.IsInDistance (base.Position, this.robot.Position, 50)) {
 									this.Button_CallBotForShutdown ();
 									this.SpawnRobotAfterRecharge = true;
 								}
@@ -580,7 +574,9 @@ namespace BaseRobot
 				bool flag2 = this.timerMoteThrow > 0;
 				if (!flag2) {
 					this.timerMoteThrow = 300;
-					float curLevel = robot.needs.rest.CurLevel;
+					//float curLevel = robot.needs.rest.CurLevel;
+					float curLevel = robot.needs.TryGetNeed<Need_Battery>().CurLevel;
+
 					bool flag3 = curLevel > 0.99;
 					if (!flag3) {
 						bool flag4 = curLevel > 0.9;

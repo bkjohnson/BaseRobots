@@ -12,13 +12,15 @@ namespace BaseRobot
 		//
 		public override float GetPriority (Pawn pawn)
 		{
-			Need_Rest rest = pawn.needs.rest;
+			//Need_Rest rest = pawn.needs.rest;
+			Need_Battery battery = pawn.needs.TryGetNeed<Need_Battery> ();
+
 			float result;
-			if (rest == null) {
+			if (battery == null) {
 				result = 0;
 			}
 			else {
-				float curLevel = rest.CurLevel;
+				float curLevel = battery.CurLevel;
 				TimeAssignmentDef timeAssignmentDef = (pawn.timetable != null) ? pawn.timetable.CurrentAssignment : TimeAssignmentDefOf.Anything;
 
 				if (timeAssignmentDef == TimeAssignmentDefOf.Anything) {
