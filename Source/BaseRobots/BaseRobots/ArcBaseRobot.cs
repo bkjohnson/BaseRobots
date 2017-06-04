@@ -24,23 +24,20 @@ namespace BaseRobot
 		//
 		public static Building_BaseRobotRechargeStation TryFindRechargeStation (ArcBaseRobot bot, Map map)
 		{
-			bool flag = map == null && bot.rechargeStation != null;
-			if (flag) {
+			if (map == null && bot.rechargeStation != null) {
 				map = bot.rechargeStation.Map;
 			}
-			bool flag2 = map == null;
-			if (flag2) {
+			if (map == null) {
 				map = Find.VisibleMap;
 			}
-			bool flag3 = map == null;
+
 			Building_BaseRobotRechargeStation result;
-			if (flag3) {
+			if (map == null) {
 				result = null;
 			}
 			else {
 				IEnumerable<Building_BaseRobotRechargeStation> enumerable = map.listerBuildings.AllBuildingsColonistOfClass<Building_BaseRobotRechargeStation> ();
-				bool flag4 = enumerable == null;
-				if (flag4) {
+				if (enumerable == null) {
 					result = null;
 				}
 				else {
@@ -58,15 +55,13 @@ namespace BaseRobot
 		//
 		public bool CanDoWorkType (WorkTypeDef workTypeDef)
 		{
-			bool flag = this.def2 == null;
 			bool result;
-			if (flag) {
+			if (this.def2 == null) {
 				result = false;
 			}
 			else {
-				bool flag2 = workTypeDef == null || workTypeDef.relevantSkills == null;
 				int num;
-				if (flag2) {
+				if (workTypeDef == null || workTypeDef.relevantSkills == null) {
 					num = 0;
 				}
 				else {
@@ -74,19 +69,16 @@ namespace BaseRobot
 				}
 				foreach (SkillDef current in workTypeDef.relevantSkills) {
 					foreach (ThingDef_BaseRobot.RobotSkills current2 in this.def2.robotSkills) {
-						bool flag3 = current2.skillDef == current;
-						if (flag3) {
+						if (current2.skillDef == current) {
 							num--;
 						}
 					}
-					bool flag4 = num == 0;
-					if (flag4) {
+					if (num == 0) {
 						break;
 					}
 				}
 				WorkTags workTags = this.def2.robotWorkTags & workTypeDef.workTags;
-				bool flag5 = num == 0 && workTags > 0;
-				result = flag5;
+				result = num == 0 && workTags > 0;
 			}
 			return result;
 		}
@@ -97,13 +89,13 @@ namespace BaseRobot
 			Map map = (base.Map != null) ? base.Map : base.MapHeld;
 			Building_BaseRobotRechargeStation rechargestation = this.rechargeStation;
 			ThingDef thingDef = null;
-			bool flag = this != null && this.def2 != null && this.def2.destroyedDef != null;
-			if (flag) {
+
+			if (this != null && this.def2 != null && this.def2.destroyedDef != null) {
 				thingDef = this.def2.destroyedDef;
 			}
 			base.Destroy (0);
-			bool flag2 = mode != null && thingDef != null;
-			if (flag2) {
+
+			if (mode != null && thingDef != null) {
 				BaseRobot_disabled BaseRobot_disabled = (BaseRobot_disabled)GenSpawn.Spawn (thingDef, intVec, map);
 				BaseRobot_disabled.stackCount = 1;
 				BaseRobot_disabled.rechargestation = rechargestation;
@@ -112,15 +104,14 @@ namespace BaseRobot
 
 		private int GetPriority (WorkTypeDef workTypeDef)
 		{
-			bool flag = this.def2 == null;
 			int result;
-			if (flag) {
+
+			if (this.def2 == null) {
 				result = 0;
 			}
 			else {
 				foreach (ThingDef_BaseRobot.RobotWorkTypes current in this.def2.robotWorkTypes) {
-					bool flag2 = current.workTypeDef == workTypeDef;
-					if (flag2) {
+					if (current.workTypeDef == workTypeDef) {
 						result = current.priority;
 						return result;
 					}
@@ -132,14 +123,13 @@ namespace BaseRobot
 
 		public List<WorkGiver> GetWorkGivers (bool emergency)
 		{
-			bool flag = emergency && this.workGiversEmergencyCache != null;
 			List<WorkGiver> result;
-			if (flag) {
+			if (emergency && this.workGiversEmergencyCache != null) {
 				result = this.workGiversEmergencyCache;
 			}
 			else {
-				bool flag2 = !emergency && this.workGiversNonEmergencyCache != null;
-				if (flag2) {
+				if (!emergency && 
+					this.workGiversNonEmergencyCache != null) {
 					result = this.workGiversNonEmergencyCache;
 				}
 				else {
@@ -151,17 +141,15 @@ namespace BaseRobot
 					for (int i = 0; i < allDefsListForReading.Count; i++) {
 						WorkTypeDef workTypeDef = allDefsListForReading [i];
 						int priority = this.GetPriority (workTypeDef);
-						bool flag3 = priority > 0;
-						if (flag3) {
-							bool flag4 = priority < num;
-							if (flag4) {
+
+						if (priority > 0) {
+							if (priority < num) {
 								List<WorkGiverDef> arg_C8_0 = workTypeDef.workGiversByPriority;
 								Predicate<WorkGiverDef> arg_C8_1;
 								if ((arg_C8_1 = dummy) == null) {
 									arg_C8_1 = (dummy= ((WorkGiverDef wg) => wg.emergency == emergency));
 								}
-								bool flag5 = GenCollection.Any<WorkGiverDef> (arg_C8_0, arg_C8_1);
-								if (flag5) {
+								if (GenCollection.Any<WorkGiverDef> (arg_C8_0, arg_C8_1)) {
 									num = priority;
 								}
 							}
@@ -180,8 +168,7 @@ namespace BaseRobot
 							list2.Add (worker);
 						}
 					}
-					bool emergency2 = emergency;
-					if (emergency2) {
+					if (emergency) {
 						this.workGiversEmergencyCache = list2;
 					}
 					else {
@@ -202,13 +189,7 @@ namespace BaseRobot
 				this.skills = new Pawn_SkillTracker (this);
 				this.SetSkills ();
 				this.story = new Pawn_StoryTracker (this);
-				bool flag2 = this.gender == Gender.Male;
-				if (flag2) {
-					this.story.bodyType = RimWorld.BodyType.Male;
-				}
-				else {
-					this.story.bodyType = RimWorld.BodyType.Female;
-				}
+				this.story.bodyType = this.gender == Gender.Female ? RimWorld.BodyType.Male : RimWorld.BodyType.Female;
 				this.story.crownType = Verse.CrownType.Average;
 				base.Drawer.renderer.graphics.ResolveApparelGraphics ();
 			}
@@ -216,12 +197,10 @@ namespace BaseRobot
 
 		private void SetSkills ()
 		{
-			bool flag = this.def2 == null;
-			if (!flag) {
+			if (this.def2 != null) {
 				foreach (SkillRecord current in this.skills.skills) {
 					foreach (ThingDef_BaseRobot.RobotSkills current2 in this.def2.robotSkills) {
-						bool flag2 = current.def == current2.skillDef;
-						if (flag2) {
+						if (current.def == current2.skillDef) {
 							current.levelInt = current2.level;
 							current.passion = current2.passion;
 						}
@@ -234,8 +213,8 @@ namespace BaseRobot
 		{
 			base.SpawnSetup (map, respawningAfterLoad);
 			this.def2 = (this.def as ThingDef_BaseRobot);
-			bool flag = this.def2 == null;
-			if (flag) {
+
+			if (this.def2 == null) {
 				Log.Error ("BaseRobot -- def2 is null. Missing class definition in xml file?");
 			}
 			LongEventHandler.ExecuteWhenFinished (new Action (this.InitPawn_Setup));
@@ -244,29 +223,30 @@ namespace BaseRobot
 		public override void Tick ()
 		{
 			base.Tick ();
-			bool flag = this.needs.food != null && this.needs.food.CurLevel < 1;
-			if (flag) {
+
+			// Not sure why this is here - robots don't need food
+			if (this.needs.food != null && 
+				this.needs.food.CurLevel < 1) {
 				this.needs.food.CurLevel = 1;
 			}
-			bool flag2 = this.def2 == null || !this.def2.allowLearning;
-			if (flag2) {
+
+			// Gain experience if learning is allowed
+			if (this.def2 == null || 
+				!this.def2.allowLearning) {
 				foreach (SkillRecord current in this.skills.skills) {
-					bool flag3 = current.xpSinceLastLevel > 1;
-					if (flag3) {
+					if (current.xpSinceLastLevel > 1) {
 						current.xpSinceLastLevel = 1;
 						current.xpSinceMidnight = 1;
 					}
 				}
 			}
-			bool flag4 = base.Spawned && (base.Dead || base.Downed || this.needs.rest.CurLevel <= 0.02);
-			if (flag4) {
+			if (base.Spawned && 
+				(base.Dead || base.Downed || this.needs.rest.CurLevel <= 0.02)) {
 				this.Destroy ();
 			}
 			else {
-				bool spawned = base.Spawned;
-				if (spawned) {
-					bool flag5 = this.rechargeStation == null;
-					if (flag5) {
+				if (base.Spawned) {
+					if (this.rechargeStation == null) {
 						this.rechargeStation = ArcBaseRobot.TryFindRechargeStation (this, base.Map);
 					}
 				}
