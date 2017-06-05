@@ -31,6 +31,8 @@ namespace BaseRobot
 				} else {
 					__result = false;
 				}
+			} else if (pawn.def.thingClass == typeof(ArcBaseRobot)) {
+				__result = false;
 			}
 		}
 	}

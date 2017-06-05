@@ -240,8 +240,9 @@ namespace BaseRobot
 					}
 				}
 			}
+			Need_Battery batt = this.needs.TryGetNeed<Need_Battery> ();
 			if (base.Spawned && 
-				(base.Dead || base.Downed)) {
+				(base.Dead || base.Downed || batt.CurLevel <= 0.02)) {
 				this.Destroy ();
 			}
 			else {
