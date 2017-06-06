@@ -184,6 +184,7 @@ namespace BaseRobot
 		{
 			bool flag = Scribe.mode > 0;
 			if (!flag) {
+				this.Name = new NameSingle (this.Label);
 				this.equipment = new Pawn_EquipmentTracker (this);
 				this.apparel = new Pawn_ApparelTracker (this);
 				this.skills = new Pawn_SkillTracker (this);
